@@ -43,7 +43,7 @@ public class Endpoint {
             response.setCode(1);
             return response;
         } catch (Exception e) {
-            log.error("User error");
+            log.error("User error " + e.getMessage());
             response.setCode(2);
             return response;
         }
@@ -54,7 +54,7 @@ public class Endpoint {
         } catch (TimeoutException e) {
             log.error("Phones timeout");
         } catch (Exception e) {
-            log.error("Phones error");
+            log.error("Phones error " + e.getMessage());
         }
 
         String phone = Optional.ofNullable(phones).map(PhonesResponse::getPhones).filter(p -> !p.isEmpty()).map(p -> p.get(0)).orElse(null);
